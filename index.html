@@ -1,122 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>My Valentine 💖</title>
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#ff4d6d,#ff8fa3);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    overflow: hidden;
-}
+  <meta charset="UTF-8" />
+  <title>Valentine Surprise ❤️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
 
-.container {
-    max-width: 400px;
-    padding: 20px;
-}
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+      animation: fade 0.6s ease;
+    }
 
-button {
-    background: white;
-    color: #ff4d6d;
-    border: none;
-    padding: 15px 30px;
-    font-size: 20px;
-    border-radius: 40px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,.2);
-    transition: transform .2s;
-}
+    h1 {
+      color: #e91e63;
+    }
 
-button:hover {
-    transform: scale(1.1);
-}
+    button {
+      padding: 12px 25px;
+      margin: 10px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #e91e63;
+      color: white;
+      transition: transform 0.2s;
+    }
 
-#wishes {
-    display: none;
-    animation: fadeIn 1s ease-in-out;
-}
+    button:hover {
+      transform: scale(1.05);
+    }
 
-.card {
-    background: rgba(255,255,255,.15);
-    padding: 25px;
-    border-radius: 20px;
-    backdrop-filter: blur(6px);
-}
+    .hidden {
+      display: none;
+    }
 
-h1 {
-    font-size: 32px;
-}
-
-p {
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0; transform: scale(.8);}
-    to {opacity: 1; transform: scale(1);}
-}
-
-/* floating hearts */
-.heart {
-    position: absolute;
-    color: #fff;
-    font-size: 20px;
-    animation: float 6s linear infinite;
-    opacity: .7;
-}
-
-@keyframes float {
-    0% {transform: translateY(100vh);}
-    100% {transform: translateY(-10vh);}
-}
-</style>
+    @keyframes fade {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container" id="start">
-    <h1>💖 For My Love 💖</h1>
-    <button onclick="showWishes()">Click Here 💌</button>
-</div>
+  <!-- Start Page -->
+  <div class="card" id="startPage">
+    <h1>Hey Love 💕</h1>
+    <button onclick="showQuestion()">Click Here</button>
+  </div>
 
-<div class="container" id="wishes">
-    <div class="card">
-        <h1>Happy Valentine’s Day ❤️</h1>
-        <p>
-            My love, you make my world brighter every single day.  
-            Thank you for being my smile, my strength, and my heart.  
-            I’m so lucky to have you — today and always 💕
-        </p>
-        <p>Forever Yours 💘</p>
-    </div>
-</div>
+  <!-- Question Page -->
+  <div class="card hidden" id="questionPage">
+    <h1>Will you be my Valentine this year? 💖</h1>
+    <button onclick="showWishes()">Yes</button>
+    <button onclick="forceYes()">No</button>
+  </div>
 
-<script>
-function showWishes() {
-    document.getElementById("start").style.display = "none";
-    document.getElementById("wishes").style.display = "block";
-}
+  <!-- Wishes Page -->
+  <div class="card hidden" id="wishesPage">
+    <h1>Yayyy!!! ❤️</h1>
+    <p>You just made my heart the happiest! 💘</p>
+    <p>Happy Valentine’s Day my love 💐</p>
+    <p>I’m so lucky to have you forever & always 💕</p>
+  </div>
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (15 + Math.random() * 25) + "px";
-    document.body.appendChild(heart);
+  <script>
+    function showQuestion() {
+      document.getElementById('startPage').classList.add('hidden');
+      document.getElementById('questionPage').classList.remove('hidden');
+    }
 
-    setTimeout(() => heart.remove(), 6000);
-}
+    function showWishes() {
+      document.getElementById('questionPage').classList.add('hidden');
+      document.getElementById('wishesPage').classList.remove('hidden');
+    }
 
-setInterval(createHeart, 400);
-</script>
+    function forceYes() {
+      alert("Oops 😄 You can’t say no! Try again ❤️");
+    }
+  </script>
 
 </body>
 </html>
