@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#ff4d6d,#ff8fa3);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 400px;
+    padding: 20px;
+}
+
+button {
+    background: white;
+    color: #ff4d6d;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    transition: transform .2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+#wishes {
+    display: none;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.card {
+    background: rgba(255,255,255,.15);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+}
+
+h1 {
+    font-size: 32px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(.8);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+/* floating hearts */
+.heart {
+    position: absolute;
+    color: #fff;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+    opacity: .7;
+}
+
+@keyframes float {
+    0% {transform: translateY(100vh);}
+    100% {transform: translateY(-10vh);}
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="start">
+    <h1>💖 For My Love 💖</h1>
+    <button onclick="showWishes()">Click Here 💌</button>
+</div>
+
+<div class="container" id="wishes">
+    <div class="card">
+        <h1>Happy Valentine’s Day ❤️</h1>
+        <p>
+            My love, you make my world brighter every single day.  
+            Thank you for being my smile, my strength, and my heart.  
+            I’m so lucky to have you — today and always 💕
+        </p>
+        <p>Forever Yours 💘</p>
+    </div>
+</div>
+
+<script>
+function showWishes() {
+    document.getElementById("start").style.display = "none";
+    document.getElementById("wishes").style.display = "block";
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 25) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
