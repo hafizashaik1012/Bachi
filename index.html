@@ -34,8 +34,9 @@ button{padding:12px 26px;border:none;border-radius:25px;font-size:18px;margin:10
 
 <div class="page" id="p3">
 <h1>Our Memories 📸</h1>
-<div class="slideshow">
-<img id="photo" src="PIC 2.jpeg" />
+<div class="gallery">
+<img src="PIC.jpeg" />
+<img src="PIC 2.jpeg" />
 </div>
 <div class="note">I love you bachi 💖<br>Fights are temporary but loving you is permanent</div>
 <button class="yes" onclick="go(4)">Next 💕</button>
@@ -71,7 +72,6 @@ function heartRain(){for(let i=0;i<25;i++){let h=document.createElement('div');h
 
 noBtn.addEventListener('mouseover',()=>{noBtn.style.left=Math.random()*80+'%';noBtn.style.top=Math.random()*80+'%'})
 
-const photos=[photo.src,photo.src,photo.src];let p=0;setInterval(()=>{photo.src=photos[p];p=(p+1)%photos.length},2000)
 
 const quotes=["You are my today and all my tomorrows 💖","Every love story is beautiful but ours is my favorite 💕","I found my forever in you ❤️","You make my heart smile 😘"];let q=0;setInterval(()=>{quote.innerHTML=quotes[q];q=(q+1)%quotes.length},5000)
 
