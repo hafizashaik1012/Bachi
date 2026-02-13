@@ -2,132 +2,80 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Surprise 💖</title>
+<title>My Valentine 💖</title>
 <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#ffb6c1;
-  text-align:center;
-  overflow:hidden;
-}
-.page{display:none;padding:40px;}
-.active{display:block;}
-button{
-  padding:12px 25px;
-  font-size:18px;
-  border:none;
-  border-radius:25px;
-  background:#ff4d6d;
-  color:white;
-  cursor:pointer;
-  margin:15px;
-}
-.no{position:absolute;background:#333;}
-.heart{position:fixed;top:-10px;font-size:24px;animation:fall linear infinite;}
+body{margin:0;font-family:cursive;font-style:italic;background:linear-gradient(135deg,#ff9a9e,#fad0c4);color:white;text-align:center;overflow:hidden}
+.page{display:none;justify-content:center;align-items:center;flex-direction:column;height:100vh}
+.active{display:flex}
+button{padding:12px 26px;border:none;border-radius:25px;font-size:18px;margin:10px;cursor:pointer}
+.yes{background:#ff4d6d;color:white}
+.no{background:#333;color:white;position:absolute}
+.heart{position:fixed;top:-20px;font-size:24px;animation:fall linear infinite}
 @keyframes fall{to{transform:translateY(110vh);opacity:0}}
-.popup{background:white;color:#ff4d6d;padding:10px;border-radius:20px;display:none;position:fixed;top:20px;left:50%;transform:translateX(-50%)}
-.slide{font-size:22px;margin-top:30px}
-.letter{background:white;color:#ff4d6d;padding:20px;border-radius:20px;font-size:20px}
-.quote{font-size:24px;margin-top:40px}
+.popup{background:white;color:#ff4d6d;padding:12px 22px;border-radius:20px;display:none;margin-top:20px}
+.slideshow img{width:220px;height:280px;border-radius:20px;margin:10px;object-fit:cover}
+.note,.letter{background:white;color:#ff4d6d;padding:20px;border-radius:20px;width:85%}
+.music{position:fixed;bottom:20px;right:20px;background:white;color:#ff4d6d}
 </style>
 </head>
 <body>
 
-<div class="popup" id="popup">I knew you'd say yes 😘</div>
-
-<div id="p1" class="page active">
-<h1>💌 Click Here My Love 💌</h1>
-<button onclick="go(2)">Open</button>
+<div class="page active" id="p1">
+<h1>Click here my love 💕</h1>
+<button class="yes" onclick="go(2)">Open 💖</button>
 </div>
 
-<div id="p2" class="page">
-<h1>Are you waiting for Valentine wish this year? 💕</h1>
-<button onclick="yesClick()">Yes 😍</button>
+<div class="page" id="p2">
+<h1>Are you waiting for Valentine wish this year? 💌</h1>
+<button class="yes" onclick="yesClick()">Yes 😍</button>
 <button class="no" id="noBtn">No 🙈</button>
+<div class="popup" id="popup">I knew you'd say yes 😘</div>
 </div>
 
-<div id="p3" class="page">
-<h1>Our Sweet Moments 📸</h1>
-<div id="slide" class="slide"></div>
-<p>I love you bachi ❤️ Fights are temporary but loving you is permanent 💖</p>
-<button onclick="go(4)">Next 💌</button>
+<div class="page" id="p3">
+<h1>Our Memories 📸</h1>
+<div class="slideshow">
+<img id="photo" src="PIC.jpeg;PIC 2.jpeg" />
+</div>
+<div class="note">I love you bachi 💖<br>Fights are temporary but loving you is permanent</div>
+<button class="yes" onclick="go(4)">Next 💕</button>
 </div>
 
-<div id="p4" class="page">
+<div class="page" id="p4">
+<h1>My Love Letter 💌</h1>
 <div class="letter">
 Happy Valentine’s Day Bhaskar 💘<br><br>
 You just made my heart the happiest! 💐<br>
-I’m so lucky to have you in my life 💖<br>
-Hoping always together 😘
+I’m so lucky to have you in my life ❤️<br>
+Hoping forever together 💕
 </div>
-<button onclick="go(5)">Next 💕</button>
-</div>
-
-<div id="p5" class="page">
-<h1>Love Quotes 💞</h1>
-<div class="quote" id="quote"></div>
+<button class="yes" onclick="go(5)">Next 💖</button>
 </div>
 
-<audio id="kiss" src="3 bgm.mp3" ></audio>
+<div class="page" id="p5">
+<h1>Love Quotes 💕</h1>
+<h2 id="quote"></h2>
+<button class="yes" onclick="go(1)">Replay 💞</button>
+</div>
 
-<button onclick="toggleMusic()">🎵 Music</button>
+<audio id="kiss" src="3 bgm.mp3"></audio>
+
+<button class="music" onclick="playKiss()">Play Music yaar 💞</button>
 
 <script>
-function go(n){
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
- document.getElementById('p'+n).classList.add('active')
-}
+function go(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('p'+n).classList.add('active')}
 
-function yesClick(){
- rain()
- popup.style.display='block'
- setTimeout(()=>popup.style.display='none',2000)
- document.getElementById('kiss').play()
- setTimeout(()=>go(3),1500)
-}
+function yesClick(){go(3);heartRain();popup.style.display='block';setTimeout(()=>popup.style.display='none',2500)}
 
-function rain(){
- for(let i=0;i<25;i++){
-  let h=document.createElement('div')
-  h.className='heart'
-  h.innerHTML='❤️'
-  h.style.left=Math.random()*100+'vw'
-  h.style.animationDuration=2+Math.random()*3+'s'
-  document.body.appendChild(h)
-  setTimeout(()=>h.remove(),5000)
- }
-}
+function heartRain(){for(let i=0;i<25;i++){let h=document.createElement('div');h.className='heart';h.innerHTML='❤️';h.style.left=Math.random()*100+'vw';h.style.animationDuration=2+Math.random()*3+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),5000)}}
 
-noBtn.onmouseover=()=>{
- noBtn.style.left=Math.random()*80+'%'
- noBtn.style.top=Math.random()*80+'%'
-}
+noBtn.addEventListener('mouseover',()=>{noBtn.style.left=Math.random()*80+'%';noBtn.style.top=Math.random()*80+'%'})
 
-const photos=["💑 First date","🌸 Cute walk","🎉 Birthday hug","❤️ Best memory"]
-let i=0
-setInterval(()=>{
- document.getElementById('slide').innerText=photos[i]
- i=(i+1)%photos.length
-},2000)
+const photos=[photo.src,photo.src,photo.src];let p=0;setInterval(()=>{photo.src=photos[p];p=(p+1)%photos.length},2000)
 
-const quotes=[
-"I love you more every day ❤️",
-"You are my forever 💕",
-"My heart beats for you 💓",
-"You complete me 💖"
-]
-let q=0
-setInterval(()=>{
- document.getElementById('quote').innerText=quotes[q]
- q=(q+1)%quotes.length
-},5000)
+const quotes=["You are my today and all my tomorrows 💖","Every love story is beautiful but ours is my favorite 💕","I found my forever in you ❤️","You make my heart smile 😘"];let q=0;setInterval(()=>{quote.innerHTML=quotes[q];q=(q+1)%quotes.length},5000)
 
-let playing=false
-function toggleMusic(){
- playing=!playing
-}
+function playKiss(){document.getElementById('kiss').play()}
 </script>
 </body>
 </html>
