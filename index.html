@@ -1,98 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Valentine Surprise ❤️</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
-
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      max-width: 400px;
-      width: 90%;
-      animation: fade 0.6s ease;
-    }
-
-    h1 {
-      color: #e91e63;
-    }
-
-    button {
-      padding: 12px 25px;
-      margin: 10px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      background: #e91e63;
-      color: white;
-      transition: transform 0.2s;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    @keyframes fade {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Valentine Surprise 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#ffb6c1;
+overflow:hidden;
+text-align:center;
+}
+.page{display:none;height:100vh;align-items:center;justify-content:center;flex-direction:column;}
+.active{display:flex;}
+button{padding:12px 25px;border:none;border-radius:25px;font-size:18px;margin:10px;cursor:pointer;}
+.yes{background:#ff3366;color:white;}
+.no{background:#444;color:white;position:absolute;}
+.heart{position:fixed;top:-10px;font-size:22px;animation:fall linear infinite;}
+@keyframes fall{to{transform:translateY(110vh);opacity:0;}}
+.emoji{position:absolute;font-size:24px;animation:float 4s infinite alternate;}
+@keyframes float{to{transform:translateY(-40px)}}
+.popup{background:white;color:#ff3366;padding:10px 20px;border-radius:20px;position:fixed;top:20px;display:none}
+.letter{font-family:cursive;background:white;color:#ff3366;padding:20px;width:80%;border-radius:15px;animation:write 3s steps(40)}
+@keyframes write{from{width:0}to{width:80%}}
+.slideshow div{width:120px;height:120px;background:#ff6699;border-radius:10px;display:inline-block;margin:5px;animation:fade 3s infinite}
+@keyframes fade{0%,100%{opacity:1}50%{opacity:.4}}
+.quote{font-size:20px;color:white;margin:10px}
+.rose{position:fixed;top:-10px;font-size:20px;animation:fall linear infinite}
+.firefly{position:absolute;width:6px;height:6px;background:yellow;border-radius:50%;animation:glow 3s infinite}
+@keyframes glow{0%,100%{opacity:.2}50%{opacity:1}}
+.balloon{position:absolute;bottom:-50px;font-size:24px;animation:rise 6s linear infinite}
+@keyframes rise{to{transform:translateY(-110vh)}}
+</style>
 </head>
 <body>
 
-  <!-- Start Page -->
-  <div class="card" id="startPage">
-    <h1>Hey Love 💕</h1>
-    <button onclick="showQuestion()">Click Here</button>
-  </div>
+<div class="popup" id="popup">I knew you'd say yes 😘</div>
 
-  <!-- Question Page -->
-  <div class="card hidden" id="questionPage">
-    <h1>Will you be my Valentine this year? 💖</h1>
-    <button onclick="showWishes()">Yes</button>
-    <button onclick="forceYes()">No</button>
-  </div>
+<div id="start" class="page active">
+<h1>💌 Click Here 💌</h1>
+<button class="yes" onclick="show('question')">Open</button>
+</div>
 
-  <!-- Wishes Page -->
-  <div class="card hidden" id="wishesPage">
-    <h1>Yayyy!!! ❤️</h1>
-    <p>You just made my heart the happiest! 💘</p>
-    <p>Happy Valentine’s Day my love 💐</p>
-    <p>I’m so lucky to have you forever & always 💕</p>
-  </div>
+<div id="question" class="page">
+<h1>Will you be my Valentine this year? 💕</h1>
+<button class="yes" onclick="yesFlow()">Yes 😍</button>
+<button class="no" id="noBtn">No 🙈</button>
+</div>
 
-  <script>
-    function showQuestion() {
-      document.getElementById('startPage').classList.add('hidden');
-      document.getElementById('questionPage').classList.remove('hidden');
-    }
+<div id="wishes" class="page">
+<h1>Happy Valentine’s Day ❤️</h1>
+<div class="quote" id="quote"></div>
+<div class="slideshow">
+<img src="WhatsApp Image 2026-02-13 at 4.40.58 AM.jpeg" width="120" height="120" style="border-radius:10px;margin:5px;animation:fade 3s infinite">
+<img src="WhatsApp Image 2026-02-13 at 4.40.57 AM (2).jpeg" width="120" height="120" style="border-radius:10px;margin:5px;animation:fade 3s infinite">
+<img src="WhatsApp Image 2026-02-13 at 4.40.57 AM (1).jpeg" width="120" height="120" style="border-radius:10px;margin:5px;animation:fade 3s infinite">
+<img src="WhatsApp Image 2026-02-13 at 4.40.57 AM.jpeg" width="120" height="120" style="border-radius:10px;margin:5px;animation:fade 3s infinite">
+</div><div></div><div></div>
+</div>
+<div class="letter">My love, you make every day magical 💖</div>
+<p>📍 Where we first met: Our special place ❤️</p>
+<button class="yes" onclick="show('memories')">More Memories ➡</button>
+</div>
 
-    function showWishes() {
-      document.getElementById('questionPage').classList.add('hidden');
-      document.getElementById('wishesPage').classList.remove('hidden');
-    }
+<div id="memories" class="page">
+<h2>📸 Our Polaroid Memories</h2>
+<img src="WhatsApp Image 2026-02-13 at 4.40.58 AM.jpeg" width="150" style="margin:10px;border:6px solid white;transform:rotate(-4deg)">
+<img src="WhatsApp Image 2026-02-13 at 4.40.57 AM (2).jpeg" width="150" style="margin:10px;border:6px solid white;transform:rotate(3deg)">
+<img src="WhatsApp Image 2026-02-13 at 4.40.57 AM (1).jpeg" width="150" style="margin:10px;border:6px solid white;transform:rotate(-2deg)">
+<img src="WhatsApp Image 2026-02-13 at 4.40.57 AM.jpeg" width="150" style="margin:10px;border:6px solid white;transform:rotate(4deg)">
+<h1>Our Love World 💕</h1>
+<p>Floating balloons of love 🎈</p>
+<button class="yes" onclick="show('start')">Restart 💞</button>
+</div>
 
-    function forceYes() {
-      alert("Oops 😄 You can’t say no! Try again ❤️");
-    }
-  </script>
+<audio id="kiss">
+<source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=" type="audio/wav">
+</audio>
 
+<script>
+function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
+
+function yesFlow(){show('wishes');rainHearts();popup.style.display='block';document.getElementById('kiss').play();setTimeout(()=>popup.style.display='none',3000)}
+
+function rainHearts(){for(let i=0;i<30;i++){let h=document.createElement('div');h.className='heart';h.innerHTML='❤️';h.style.left=Math.random()*100+'vw';h.style.animationDuration=2+Math.random()*3+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),5000)}}
+
+noBtn.onmouseover=()=>{noBtn.style.left=Math.random()*80+'%';noBtn.style.top=Math.random()*80+'%'}
+
+for(let i=0;i<12;i++){let e=document.createElement('div');e.className='emoji';e.innerHTML='💖';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';document.body.appendChild(e)}
+
+const quotes=["You are my forever ❤️","Love you to the moon 🌙","My heart is yours 💕","Always us 💖"]
+let qi=0
+setInterval(()=>{quote.innerText=quotes[qi++%quotes.length]},5000)
+
+for(let i=0;i<15;i++){let r=document.createElement('div');r.className='rose';r.innerHTML='🌹';r.style.left=Math.random()*100+'vw';r.style.animationDuration=3+Math.random()*3+'s';document.body.appendChild(r)}
+
+for(let i=0;i<20;i++){let f=document.createElement('div');f.className='firefly';f.style.left=Math.random()*100+'%';f.style.top=Math.random()*100+'%';document.body.appendChild(f)}
+
+for(let i=0;i<10;i++){let b=document.createElement('div');b.className='balloon';b.innerHTML='🎈';b.style.left=Math.random()*100+'%';document.body.appendChild(b)}
+</script>
 </body>
 </html>
